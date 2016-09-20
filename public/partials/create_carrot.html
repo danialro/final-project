@@ -1,0 +1,48 @@
+<div class="container login-container">
+
+  <div class="panel">
+    <div class="panel-body">
+      <div ng-if="messages.error" role="alert" class="alert alert-danger">
+        <div ng-repeat="error in messages.error">{{error.msg}}</div>
+      </div>
+
+      <form name="carrotForm" ng-submit="carrotForm.$valid && submitCarrot(carrot)">
+
+        <legend>Create a Carrot</legend>
+        <div class="form-group">
+          <label for="name">Carrot Name</label>
+          <input type="text" id="name" placeholder="Name Your Carrot" class="form-control" ng-model="name" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="weekly_goal">Weekly Goal</label>
+          <input type="number" name="weekly_goal" id="weekly_goal" placeholder="Your Weekly Goal in KM" class="form-control" ng-model="weekly_goal">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" placeholder="Motivate other users to join your Carrot..." class="form-control" ng-model="description" ng-maxlength="10" required>
+        </div>
+
+        <div class="form-group">
+          <label for="entrance_fee">Entrance Fee</label>
+          <input type="number" name="entrance_fee" id="entrance_fee" placeholder="Set Entrance Fee for other users $" class="form-control" ng-model="entrance_fee" required>
+        </div>
+
+        <div class="form-group">
+          <small class="text-muted">By signing up, you agree to the <a href="/">Terms of Service</a>.</small>
+        </div>
+        <button type="submit" class="btn btn-success">Create Carrot</button>
+      </form>
+
+      <div class="hr-title"><span>or</span></div>
+      <div class="btn-toolbar text-center">
+        <button class="btn btn-default"><a href="/">Join an Existing Carrot</a></button>
+      </div>
+    </div>
+  </div>
+
+<!--   <p class="text-center">
+    Already have an account? <a href="/login"><strong>Log in</strong></a>
+  </p> -->
+</div>

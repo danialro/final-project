@@ -17,14 +17,13 @@ var userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   gender: String,
   location: String,
-  website: String,
   picture: String,
   facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  vk: String
+  createdCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}],
+  joinedCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}]
+
 }, schemaOptions);
+
 
 userSchema.pre('save', function(next) {
   var user = this;
@@ -37,11 +36,13 @@ userSchema.pre('save', function(next) {
   });
 });
 
+
 userSchema.methods.comparePassword = function(password, cb) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
     cb(err, isMatch);
   });
 };
+
 
 userSchema.virtual('gravatar').get(function() {
   if (!this.get('email')) {
@@ -51,6 +52,7 @@ userSchema.virtual('gravatar').get(function() {
   return 'https://gravatar.com/avatar/' + md5 + '?s=200&d=retro';
 });
 
+
 userSchema.options.toJSON = {
   transform: function(doc, ret, options) {
     delete ret.password;
@@ -58,6 +60,9 @@ userSchema.options.toJSON = {
     delete ret.passwordResetExpires;
   }
 };
+
+
+
 
 var User = mongoose.model('User', userSchema);
 

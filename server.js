@@ -16,15 +16,18 @@ dotenv.load();
 
 // Models
 var User = require('./models/User');
+var Carrot = require('./models/Carrot')
 
-// Controllers
-var userController = require('./controllers/user');
-var contactController = require('./controllers/contact');
+// Routes
+var userRoute = require('./routes/user');
+var contactRoute = require('./routes/contact');
+var carrotRoute = require('./routes/carrot');
 
 var app = express();
 
 
-mongoose.connect(process.env.MONGODB);
+// mongoose.connect(process.env.MONGODB || 'mongodb://localhost/carrots');
+mongoose.connect('mongodb://localhost/carrots');
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
@@ -59,16 +62,16 @@ app.use(function(req, res, next) {
   }
 });
 
-app.post('/contact', contactController.contactPost);
-app.put('/account', userController.ensureAuthenticated, userController.accountPut);
-app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
-app.post('/signup', userController.signupPost);
-app.post('/login', userController.loginPost);
-app.post('/forgot', userController.forgotPost);
-app.post('/reset/:token', userController.resetPost);
-app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
-app.post('/auth/facebook', userController.authFacebook);
-app.get('/auth/facebook/callback', userController.authFacebookCallback);
+app.post('/contact', contactRoute.contactPost);
+app.put('/account', userRoute.ensureAuthenticated, userRoute.accountPut);
+app.delete('/account', userRoute.ensureAuthenticated, userRoute.accountDelete);
+app.post('/signup', userRoute.signupPost);
+app.post('/login', userRoute.loginPost);
+app.post('/forgot', userRoute.forgotPost);
+app.post('/reset/:token', userRoute.resetPost);
+app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
+app.post('/auth/facebook', userRoute.authFacebook);
+app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

@@ -36,6 +36,11 @@ angular.module('MyApp', ['ngRoute', 'satellizer'])
         controller: 'ResetCtrl',
         resolve: { skipIfAuthenticated: skipIfAuthenticated }
       })
+      .when('/create_carrot', {
+        templateUrl: 'partials/create_carrot.html',
+        controller: 'CarrotCtrl',
+        resolve: { skipIfAuthenticated: skipIfAuthenticated }
+      })
       .otherwise({
         templateUrl: 'partials/404.html'
       });
