@@ -5,10 +5,10 @@ angular.module('MyApp')
 HeaderCtrl.$inject = ['$scope', '$location', '$window', '$auth'];
 
 function HeaderCtrl($scope, $location, $window, $auth) {
-    var ctrl = this;
-    ctrl.isActive = isActive;
-    ctrl.isAuthenticated = isAuthenticated;
-    ctrl.logout = logout;
+    // var ctrl = this;
+    $scope.isActive = isActive;
+    $scope.isAuthenticated = isAuthenticated;
+    $scope.logout = logout;
 
     function isActive(viewLocation) {
         return viewLocation === $location.path();

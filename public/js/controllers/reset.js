@@ -5,8 +5,8 @@
   ResetCtrl.$inject = ['$scope', 'Account'];
 
   function ResetCtrl($scope, Account) {
-      var ctrl = this;
-      ctrl.resetPassword = resetPassword;
+      // var ctrl = this;
+      $scope.resetPassword = resetPassword;
 
       function resetPassword() {
           Account.resetPassword($scope.user)

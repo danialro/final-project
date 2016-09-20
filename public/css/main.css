@@ -12,7 +12,7 @@ body {
   background-color: #f4f4f4;;
   margin-bottom: 44px;
   line-height: 1.57142857;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -68,7 +68,7 @@ footer {
 /* ------------------------- */
 
 .navbar-default {
-  background-color: #fff;
+  background-color: #191b1d;
   border-color: #e0e0e0;
 }
 
@@ -77,7 +77,7 @@ footer {
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #262626;
+  color: #ecf0f1;
   border-bottom: 3px solid transparent;
   padding-top: 17.5px;
   padding-bottom: 14.5px;
@@ -85,8 +85,9 @@ footer {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  background-color: transparent;;
-  border-bottom-color: #bdbdbd;
+  /*background-color: transparent;*/
+  border-bottom-color: #ecf0f1;
+  /*border-color: #3d4146;*/
 }
 
 .navbar-default .navbar-nav > li > a.navbar-avatar {
@@ -101,9 +102,9 @@ footer {
 }
 
 .navbar-default .navbar-nav > li.active > a {
-  border-bottom-color: #3f51b5;
+  border-bottom-color: #00B16A;
   background-color: transparent;
-  color: #262626;
+  /*color: #ecf0f1;*/
 }
 
 /* Panels

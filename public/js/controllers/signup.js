@@ -5,9 +5,9 @@ angular.module('MyApp')
 SignupCtrl.$inject = ['$scope', '$rootScope', '$location', '$window', '$auth'];
 
 function SignupCtrl($scope, $rootScope, $location, $window, $auth) {
-    var ctrl = this;
-    ctrl.signup = signup;
-    ctrl.authenticate = authenticate;
+    // var ctrl = this;
+    $scope.signup = signup;
+    $scope.authenticate = authenticate;
 
     function signup() {
         $auth.signup($scope.user)

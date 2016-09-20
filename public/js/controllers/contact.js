@@ -5,8 +5,8 @@ angular.module('MyApp')
 ContactCtrl.$inject = ['$scope', 'Contact'];
 
 function ContactCtrl($scope, Contact) {
-    var ctrl = this;
-    ctrl.sendContactForm = sendContactForm;
+    // var ctrl = this;
+    $scope.sendContactForm = sendContactForm;
 
     function sendContactForm() {
         Contact.send($scope.contact)

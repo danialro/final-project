@@ -5,8 +5,8 @@ angular.module('MyApp')
 ForgotCtrl.$inject = ['$scope', 'Account'];
 
 function ForgotCtrl($scope, Account) {
-    var ctrl = this;
-    ctrl.forgotPassword = forgotPassword;
+    // var ctrl = this;
+    $scope.forgotPassword = forgotPassword;
 
     function forgotPassword() {
         Account.forgotPassword($scope.user)

@@ -5,13 +5,13 @@ angular.module('MyApp')
 ContactCtrl.$inject = ['$scope', '$rootScope', '$location', '$window', '$auth', 'Account'];
 
 function ContactCtrl($scope, $rootScope, $location, $window, $auth, Account) {
-    var ctrl = this;
-    ctrl.updateProfile = updateProfile;
-    ctrl.changePassword = changePassword;
-    ctrl.link = link;
-    ctrl.unlink = unlink;
-    ctrl.deleteAccount = deleteAccount;
-    ctrl.unlink = unlink;
+    // var ctrl = this;
+    $scope.updateProfile = updateProfile;
+    $scope.changePassword = changePassword;
+    $scope.link = link;
+    $scope.unlink = unlink;
+    $scope.deleteAccount = deleteAccount;
+    $scope.unlink = unlink;
     $scope.profile = $rootScope.currentUser;
 
     function updateProfile() {
