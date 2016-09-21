@@ -1,4 +1,4 @@
-app.controller('CarrotCtrl', ['$scope', 'carrotService', function($scope, carrotService){
+app.controller('CarrotCtrl', ['$scope', 'carrotService', '$location', '$http', function($scope, carrotService, $location, $http){
 
 console.log("inside the carrot controller");
 
@@ -14,7 +14,10 @@ console.log("inside the carrot controller");
       description: $scope.description
     }
 
-    carrotService.postCarrot(newCarrot);
+    carrotService.postCarrot(newCarrot).then(function(){
+      $location.path('/');
+    });
+
   }
 
 

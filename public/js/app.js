@@ -43,8 +43,12 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       })
       .when('/create_carrot', {
         templateUrl: 'partials/create_carrot.html',
-        controller: 'CarrotCtrl',
-        resolve: { skipIfAuthenticated: skipIfAuthenticated }
+        controller: 'CarrotCtrl'
+      })
+      .when('/carrot_page', {
+        templateUrl: 'partials/carrot_page.html',
+        controller: 'CarrotCtrl'
+        // resolve: { skipIfAuthenticated: skipIfAuthenticated }
       })
       .otherwise({
         templateUrl: 'partials/404.html'
@@ -70,8 +74,15 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       }
     }
   })
+
   app.run(function($rootScope, $window) {
     if ($window.localStorage.user) {
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
     }
   });
+
+
+
+
+
+
