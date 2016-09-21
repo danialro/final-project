@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var request = require('request');
+// var router = express.Router();
 
 // Load environment variables from .env file
 dotenv.load();
@@ -62,6 +63,33 @@ app.use(function(req, res, next) {
   }
 });
 
+// find specific carrot
+app.param('carrot', function(req, res, next, id) {
+  var query = Carrot.findById(id);
+
+  query.exec(function (err, carrot){
+    if (err) { return next(err); }
+    if (!carrot) { return next(new Error('can\'t find carrot')); }
+
+    req.carrot = carrot;
+    return next();
+  });
+});
+
+// find specific user
+app.param('user', function(req, res, next, id) {
+  var query = User.findById(id);
+
+  query.exec(function (err, user){
+    if (err) { return next(err); }
+    if (!user) { return next(new Error('can\'t find user')); }
+
+    req.user = user;
+    return next();
+  });
+});
+
+
 app.post('/contact', contactRoute.contactPost);
 app.put('/account', userRoute.ensureAuthenticated, userRoute.accountPut);
 app.delete('/account', userRoute.ensureAuthenticated, userRoute.accountDelete);
@@ -73,8 +101,12 @@ app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
 app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
-app.get('/carrots', carrotRoute.getCarrots);
-app.post('/carrots', carrotRoute.postCarrot);
+
+
+app.get('/carrots', carrotRoute.getCarrots); // get all carrots
+app.post('/carrots', carrotRoute.postCarrot); // post new carrot
+app.get('/carrots/:carrot', carrotRoute.getOneCarrot); // get one carrot
+// app.get('/users/:user', userRoute.getOneUser); // get one user
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

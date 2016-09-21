@@ -45,10 +45,9 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
         templateUrl: 'partials/create_carrot.html',
         controller: 'CarrotCtrl'
       })
-      .when('/carrot_page', {
+      .when('/carrots/:id', {
         templateUrl: 'partials/carrot_page.html',
-        controller: 'CarrotCtrl'
-        // resolve: { skipIfAuthenticated: skipIfAuthenticated }
+        controller: 'CarrotPageCtrl'
       })
       .otherwise({
         templateUrl: 'partials/404.html'

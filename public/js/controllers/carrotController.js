@@ -1,7 +1,5 @@
 app.controller('CarrotCtrl', ['$scope', 'carrotService', '$location', '$http', function($scope, carrotService, $location, $http){
 
-
-
   $scope.submitCarrot = function () {
 
     var newCarrot = {
@@ -14,11 +12,7 @@ app.controller('CarrotCtrl', ['$scope', 'carrotService', '$location', '$http', f
     carrotService.postCarrot(newCarrot).then(function(){
       $location.path('/');
     });
-  }
-
-  $scope.carrot = carrot
-
-
+  };
 
 }]);
 

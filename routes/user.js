@@ -351,6 +351,24 @@ exports.authFacebook = function(req, res) {
   });
 };
 
+
+// get one user
+exports.getOneUser = function(req, res, next) {
+    // console.log("get one user in server", user)
+    res.json(req.user);
+  };
+
+
 exports.authFacebookCallback = function(req, res) {
   res.send('Loading...');
 };
+
+
+
+
+
+
+
+
+
+

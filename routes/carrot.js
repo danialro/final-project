@@ -21,32 +21,6 @@ exports.postCarrot = function(req, res, next) {
 };
 
 
-
-// GET requests for all carrots
-exports.getCarrots = function(req, res, next) {
- Carrot.find(function(err, carrots){
-   if(err){ return next(err); }
-
-   res.json(carrots);
- });
-};
-
-
-
-// // find specific user
-// router.param('user', function(req, res, next, id) {
-//   var query = User.findById(id);
-
-//   query.exec(function (err, user){
-//     if (err) { return next(err); }
-//     if (!user) { return next(new Error('can\'t find user')); }
-
-//     req.user = user;
-//     return next();
-//   });
-// });
-
-
 // // find specific carrot
 // router.param('carrot', function(req, res, next, id) {
 //   var query = Carrot.findById(id);
@@ -61,15 +35,21 @@ exports.getCarrots = function(req, res, next) {
 // });
 
 
-// // 
+// get one carrot
+exports.getOneCarrot = function(req, res, next) {
+    res.json(req.carrot);
+  };
 
-// router.get('/carrots/:carrot', function(req, res, next) {
-//   req.carrot.populate('carrots', function(err, carrot) {
-//     if (err) { return next(err); }
 
-//     res.json(carrot);
-//   });
-// });
+// GET requests for all carrots
+exports.getCarrots = function(req, res, next) {
+ Carrot.find(function(err, carrots){
+   if(err){ return next(err); }
+
+   res.json(carrots);
+ });
+};
+
 
 
 

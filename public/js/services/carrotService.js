@@ -15,6 +15,12 @@ console.log("inside the carrot service");
 
     postCarrot: function(data) {
       return $http.post('/carrots', data);
+    },
+
+    getOneCarrot: function(id) {
+      return $http.get('/carrots/' + id).then(function(res){
+        return res.data;
+      });
     }
 
   
