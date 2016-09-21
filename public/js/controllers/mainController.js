@@ -1,6 +1,12 @@
 app.controller('MainCtrl', ['$scope', 'carrotService', function($scope, carrotService){
+
   $scope.carrots = carrotService.carrots;
 
+  $scope.showCarrot = function() {
+    carrotService.getOne().then(function(){
+      $location.path('/carrot_page');
+    })
+  }
   // $scope.addPost = function() {
   //   if ($scope.title === '') { return; }
 

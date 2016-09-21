@@ -73,8 +73,8 @@ app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
 app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
-app.post('/carrots', carrotRoute.postCarrot);
 app.get('/carrots', carrotRoute.getCarrots);
+app.post('/carrots', carrotRoute.postCarrot);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
