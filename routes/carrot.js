@@ -12,7 +12,7 @@ exports.postCarrot = function(req, res, next) {
 
   var carrot = new Carrot(req.body);
   carrot.owner = req.user;
-  console.log("in the postCarrot in server");
+
   carrot.save(function(err, carrot){
     if(err){ return next(err); }
 
@@ -21,24 +21,11 @@ exports.postCarrot = function(req, res, next) {
 };
 
 
-// // find specific carrot
-// router.param('carrot', function(req, res, next, id) {
-//   var query = Carrot.findById(id);
-
-//   query.exec(function (err, carrot){
-//     if (err) { return next(err); }
-//     if (!carrot) { return next(new Error('can\'t find carrot')); }
-
-//     req.carrot = carrot;
-//     return next();
-//   });
-// });
-
 
 // get one carrot
 exports.getOneCarrot = function(req, res, next) {
-    res.json(req.carrot);
-  };
+  res.json(req.carrot);
+};
 
 
 // GET requests for all carrots

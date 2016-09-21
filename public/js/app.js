@@ -47,7 +47,12 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       })
       .when('/carrots/:id', {
         templateUrl: 'partials/carrot_page.html',
-        controller: 'CarrotPageCtrl'
+        controller: 'CarrotPageCtrl',
+        resolve: {
+          carrot: ['carrotService', '$route', function(carrotService, $route){
+            return carrotService.getOneCarrot($route.current.params.id);
+          }]
+        }
       })
       .otherwise({
         templateUrl: 'partials/404.html'

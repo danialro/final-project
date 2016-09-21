@@ -1,13 +1,13 @@
 <div class="container">
   
-  <div class="row" id="green" ng-model="carrot">
+  <div class="row" id="green">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-success coupon">
 
         <div class="panel-heading" id="head">
           <div class="panel-title" id="title">
             <i class="fa fa-github fa-2x"></i>
-            <span class="hidden-xs">{{carrot.name}}</span>
+            <span class="hidden-xs">{{carrot.carrotName}}</span>
             <!-- <span class="visible-xs">Automatic Transmission Service</span> -->
           </div>
         </div>
@@ -16,6 +16,7 @@
           <img src="http://i.imgur.com/e07tg8R.png" class="coupon-img img-rounded">
           <div class="col-md-9">
             <ul class="items">
+              <li>{{carrot.weeklyGoal}}</li>
               <li>{{carrot.numParticipants}}</li>
               <li>{{carrot.entrance_fee}}</li>
               <li>{{carrot.description}}</li>

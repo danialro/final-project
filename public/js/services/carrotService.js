@@ -19,6 +19,7 @@ console.log("inside the carrot service");
 
     getOneCarrot: function(id) {
       return $http.get('/carrots/' + id).then(function(res){
+        // console.log(data)
         return res.data;
       });
     }
