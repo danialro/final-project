@@ -1,11 +1,16 @@
-(function() {
-angular.module('MyApp', ['ngRoute', 'satellizer'])
-  .config(function($routeProvider, $locationProvider, $authProvider) {
+var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
+  app.config(function($routeProvider, $locationProvider, $authProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'partials/home.html',
+        controller: 'MainCtrl',
+        resolve: {
+          carrotPromise: ['carrotService', function(carrotService){
+            return carrotService.getAll();
+          }]
+        }
       })
       .when('/contact', {
         templateUrl: 'partials/contact.html',
@@ -65,9 +70,8 @@ angular.module('MyApp', ['ngRoute', 'satellizer'])
       }
     }
   })
-  .run(function($rootScope, $window) {
+  app.run(function($rootScope, $window) {
     if ($window.localStorage.user) {
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
     }
   });
-})();

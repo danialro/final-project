@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
+var express = require('express');
 
-
-var carrotSchema = new mongoose.Schema({
+var CarrotSchema = new mongoose.Schema({
   carrotName: String,
   weeklyGoal: Number,
   launchDate: {type: Date, default: Date.now()},
@@ -15,20 +15,20 @@ var carrotSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 
-}, schemaOptions);
+});
 
 
-CommentSchema.methods.participantsCounter = function() {
+CarrotSchema.methods.participantsCounter = function() {
   this.numParticipants += 1;
 };
 
-CommentSchema.methods.moneyPledgedCounter = function() {
+CarrotSchema.methods.moneyPledgedCounter = function() {
   this.moneyPledged += 10; // entrance fee
 };
 
 
 
 
-var Carrot = mongoose.model('Carrot', carrotSchema);
+var Carrot = mongoose.model('Carrot', CarrotSchema);
 
 module.exports = Carrot;
