@@ -1,10 +1,18 @@
 var mongoose = require('mongoose');
 var express = require('express');
 
+
+var schemaOptions = {
+  timestamps: true,
+  toJSON: {
+    virtuals: true
+  }
+};
+
+
 var CarrotSchema = new mongoose.Schema({
   carrotName: String,
   weeklyGoal: Number,
-  launchDate: {type: Date, default: Date.now()},
   entrance_fee: Number,
   image: String,
   description: String,
@@ -15,7 +23,7 @@ var CarrotSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 
-});
+}, schemaOptions);
 
 
 CarrotSchema.methods.participantsCounter = function() {
