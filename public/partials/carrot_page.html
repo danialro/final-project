@@ -7,7 +7,7 @@
         <div class="panel-heading" id="head">
           <div class="panel-title" id="title">
             <i class="fa fa-github fa-2x"></i>
-            <span class="hidden-xs">{{carrot.carrotName}}</span>
+            <h3 style="text-align:center">{{carrot.carrotName}}</h3>
             <!-- <span class="visible-xs">Automatic Transmission Service</span> -->
           </div>
         </div>
@@ -15,13 +15,14 @@
         <div class="panel-body">
           <img src="http://i.imgur.com/e07tg8R.png" class="coupon-img img-rounded">
           <div class="col-md-9">
-            <ul class="items">
-              <li>{{carrot.weeklyGoal}}</li>
-              <li>{{carrot.numParticipants}}</li>
-              <li>{{carrot.entrance_fee}}</li>
-              <li>{{carrot.description}}</li>
-              <li></li>
-            </ul>
+            <div class="items">
+              <h3>Weekly Goal: Run {{carrot.weeklyGoal}}KM</h3>
+              <br>
+              <h4>Current Participants: {{carrot.numParticipants}}</h4>
+              <h4>Entrance Fee: US$ {{carrot.entrance_fee}}</h4>
+              <br>
+              <h5>Carrot Description: {{carrot.description}}</h5>
+            </div>
           </div>
           <div class="col-md-3">
             <div class="offer text-success">
@@ -32,23 +33,16 @@
           </div>
           <div class="col-md-12">
             <h4>How Is Works?</h4>
-            <p>Using Genuine Oil Filter and 
-            multigrade oil up to vehicle specification. Lube as 
-            necessary. Ester Oil or Synthetic available at additional 
-            cost. Excludes hazardous waste fee, tax and shop supplies, 
-            where applicable. Offer not valid with previous charges or 
-            with any other offers or specials. Customer must offer at 
-            time of write-up. No cash value.</p>
+            <p>Well, it's pretty simple. You pledge the entrance fees and commit to meet the weekly goal. If you do, you keep your money and get the money of the lazy members of this carrot who didn't meet their weekly goal.</p>
+            <p>If you don't, you lose your money and get to keep your belly :)</p>
+            <br>
+            <button class="btn btn-primary col-md-4 col-md-offset-4" ng-click="joinCarrot(carrot)">Join Carrot</button>
+            <button class="btn btn-danger col-md-4 col-md-offset-4" ng-click="leaveCarrot(carrot)">Leave Carrot</button>
           </div>
         </div>
 
         <div class="panel-footer">
-          <div class="coupon-code">
-            <span class="print">
-                <a href="#" class="btn btn-link"><i class="fa fa-lg fa-print"></i>Join Carrot</a>
-            </span>
-          </div>
-          <div class="exp">Expires: Sep 30, 2016</div>
+          <div class="exp">Carrot Created at: {{carrot.createdAt}}</div>
         </div>
 
       </div>

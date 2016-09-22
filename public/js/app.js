@@ -43,7 +43,8 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       })
       .when('/create_carrot', {
         templateUrl: 'partials/create_carrot.html',
-        controller: 'CarrotCtrl'
+        controller: 'CarrotCtrl',
+        resolve: { loginRequired: loginRequired }
       })
       .when('/carrots/:id', {
         templateUrl: 'partials/carrot_page.html',
@@ -66,15 +67,15 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       redirectUri: 'http://localhost:3000/auth/facebook/callback'
     });
 
-    function skipIfAuthenticated($location, $auth) {
+    function skipIfAuthenticated($location, $auth) { // if user is logged in, will take him to the page
       if ($auth.isAuthenticated()) {
         $location.path('/');
       }
     }
 
-    function loginRequired($location, $auth) {
+    function loginRequired($location, $auth) { // if user isn't logged in, will take him to signup/login page
       if (!$auth.isAuthenticated()) {
-        $location.path('/login');
+        $location.path('/signup');
       }
     }
   })

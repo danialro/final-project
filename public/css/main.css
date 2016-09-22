@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-color: #f4f4f4;;
+  /*background-color: #f4f4f4;*/
   margin-bottom: 44px;
   line-height: 1.57142857;
   font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: #e67e22;
 }
 
 footer {
@@ -69,7 +69,7 @@ footer {
 
 .navbar-default {
   background-color: #191b1d;
-  border-color: #e0e0e0;
+  border-color: #e67e22;
 }
 
 .navbar-default .navbar-nav {
@@ -85,8 +85,9 @@ footer {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  /*background-color: transparent;*/
-  border-bottom-color: #ecf0f1;
+  background-color: #191b1d !important;
+  border-bottom-color: #e67e22;
+  color: white !important;
   /*border-color: #3d4146;*/
 }
 
@@ -102,9 +103,9 @@ footer {
 }
 
 .navbar-default .navbar-nav > li.active > a {
-  border-bottom-color: #00B16A;
-  background-color: transparent;
-  /*color: #ecf0f1;*/
+  /*border-bottom-color: #00B16A;*/
+  background-color: #191b1d !important;
+  color: #e67e22;
 }
 
 /* Panels

@@ -31,7 +31,7 @@ CarrotSchema.methods.participantsCounter = function() {
 };
 
 CarrotSchema.methods.moneyPledgedCounter = function() {
-  this.moneyPledged += 10; // entrance fee
+  this.moneyPledged += this.entrance_fee;
 };
 
 

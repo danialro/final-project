@@ -21,6 +21,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   z-index: -1;
   position: relative;
 }
@@ -30,19 +31,24 @@ body {
   height: 100%;
 }
 
+/*.section {
+  height: 20% !important;
+}*/
+
 #video_text {
   position: absolute;
   text-align: center;
   width: 75%;
-  min-height: 75%;
+  height: 75%;
   opacity: 0.7;
-  z-index: 9;
+  z-index: 100;
   /*text-shadow: 0 0 10px #000;*/
   color: #191b1d;
-  font-size: 4.000em;
+  font-size: 5vw;
   font-family: 'Raleway';
   margin-top: 1.400em;
   margin-left: 2.500em;
+  overflow: hidden;
 }
 
 

@@ -1,5 +1,6 @@
 app.controller('CarrotCtrl', ['$scope', 'carrotService', '$location', '$http', function($scope, carrotService, $location, $http){
 
+  // submitting a new carrot
   $scope.submitCarrot = function () {
 
     var newCarrot = {
@@ -10,7 +11,7 @@ app.controller('CarrotCtrl', ['$scope', 'carrotService', '$location', '$http', f
     }
 
     carrotService.postCarrot(newCarrot).then(function(){
-      $location.path('/');
+      $location.path('/'); // after creating a new carrot, will take you to home page
     });
   };
 

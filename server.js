@@ -102,10 +102,10 @@ app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
 
-
 app.get('/carrots', carrotRoute.getCarrots); // get all carrots
-app.post('/carrots', carrotRoute.postCarrot); // post new carrot
 app.get('/carrots/:carrot', carrotRoute.getOneCarrot); // get one carrot
+app.post('/carrots', carrotRoute.postCarrot); // post new carrot
+app.put('/carrots/:carrot/join', carrotRoute.joinCarrot); // jion a specific carrot
 // app.get('/users/:user', userRoute.getOneUser); // get one user
 
 app.get('*', function(req, res) {

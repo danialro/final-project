@@ -1,10 +1,9 @@
 app.factory('carrotService', ['$http', function($http) {
 
-console.log("inside the carrot service");
-
   var carrotService = {
     carrots: [],
 
+    // get all carrots for home page
     getAll: function() {
       return $http.get('/carrots').then(function(data) {
   
@@ -12,18 +11,24 @@ console.log("inside the carrot service");
       });
     },
 
-
+    // posting a new carrot
     postCarrot: function(data) {
-      return $http.post('/carrots', data);
+      return $http.post('/carrots/', data);
     },
 
+    // get into one carrot page
     getOneCarrot: function(id) {
       return $http.get('/carrots/' + id).then(function(res){
-        // console.log(data)
         return res.data;
       });
-    }
+    },
 
+    // joining a carrot
+    joinCarrot: function(carrot) {
+      return $http.put('/carrots/' + carrot._id + '/join').success(function(data){
+        return data;
+      });
+    }
   
 }
 
