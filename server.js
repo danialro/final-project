@@ -63,6 +63,36 @@ app.use(function(req, res, next) {
   }
 });
 
+
+// // initialize the Fitbit API client
+// var FitbitApiClient = require("fitbit-node"),
+//     client = new FitbitApiClient("22822W", "e46f74d5e23c9d8577fbf0a8bcb200f8");
+
+// // redirect the user to the Fitbit authorization page
+// app.get("/authorize", function (req, res) {
+//   console.log(res);
+//   console.log(req);
+//     // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
+//     res.redirect(client.getAuthorizeUrl('activity', 'http://df0e4131.ngrok.io/'));
+// });
+
+// // handle the callback from the Fitbit authorization flow
+// app.get("/callback", function (req, res) {
+//     // exchange the authorization code we just received for an access token
+//     client.getAccessToken(req.query.code, 'http://df0e4131.ngrok.io/').then(function (result) {
+//         // use the access token to fetch the user's profile information
+//         client.get("/profile.json", result.access_token).then(function (results) {
+//           console.log(results);
+//             res.send(results[0]);
+//         });
+//     }).catch(function (error) {
+//         res.send(error);
+//     });
+// });
+
+
+
+
 // find specific carrot
 app.param('carrot', function(req, res, next, id) {
   var query = Carrot.findById(id);

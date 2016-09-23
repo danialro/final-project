@@ -5,7 +5,7 @@ angular.module('MyApp')
 LoginCtrl.$inject = ['$scope', '$rootScope', '$location', '$window', '$auth'];
 
 function LoginCtrl($scope, $rootScope, $location, $window, $auth) {
-    // var ctrl = this;
+
     $scope.login = login;
     $scope.authenticate = authenticate;
 
