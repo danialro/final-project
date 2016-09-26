@@ -17,11 +17,6 @@ body {
   margin-bottom: 30px;
 }
 
-/*div {
-  width:100%;
-  height: 100%;
-}*/
-
 #home-video {
   top: 0;
   left: 0;
@@ -59,12 +54,13 @@ body {
 .card {
   overflow: hidden;
   position: relative;
-  border: 1px solid #CCC;
-  border-radius: 8px;
+  border: 5px double #333;
+  /*border-radius: 8px;*/
   text-align: center;
   padding: 0;
   background-color: #ecf0f1;
-  color: rgb(136, 172, 217);
+  color: #333;
+  font-family: "Josefin Sans";
 }
 
 .card .header-bg {
@@ -74,7 +70,7 @@ body {
   left: 0;
   width: 100%;
   height: 70px;
-  border-bottom: 1px #FFF solid;
+  /*border-bottom: 1px #FFF solid;*/
   /* This positions the canvas under the text */
   z-index: 1;
 }
@@ -90,7 +86,19 @@ body {
 /*  -webkit-border-radius: 50%;
   -moz-border-radius: 50%;*/
   border-radius: 50%;
-  border: 5px solid rgba(0,0,30,0.8);
+  border: 5px double rgba(0,0,30,0.8);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #d35400;
+  border-color: #333;
+}
+
+.home-button:hover {
+    color: #fff;
+    background-color: #eb7518;
+    border-color: #333;
 }
 
 .coupon {

@@ -29,6 +29,10 @@ app.factory('carrotService', ['$http', function($http) {
         return data;
       });
     }
+
+    // connectRunKeeper: function(){
+    //   return $http.get()
+    // }
   
 }
 

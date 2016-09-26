@@ -19,6 +19,7 @@ var userSchema = new mongoose.Schema({
   location: String,
   picture: String,
   facebook: String,
+  // fitbit: String,
   createdCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}],
   joinedCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}]
 

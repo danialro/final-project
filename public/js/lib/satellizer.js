@@ -43,19 +43,22 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           oauthType: '2.0',
           popupOptions: { width: 580, height: 400 }
         },
-        google: {
-          name: 'google',
-          url: '/auth/google',
-          authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+        fitbit: {
+          name: 'fitbit',
+          url: '/auth/fitbit',
+          authorizationEndpoint: 'https://api.fitbit.com/oauth2/authorize',
           redirectUri: window.location.origin,
           requiredUrlParams: ['scope'],
           optionalUrlParams: ['display'],
-          scope: ['profile', 'email'],
+          scope: ['profile', 'activity'],
           scopePrefix: 'openid',
           scopeDelimiter: ' ',
           display: 'popup',
           oauthType: '2.0',
-          popupOptions: { width: 452, height: 633 }
+          response_type: 'code',
+          grant_type: 'authorization_code',
+          useBasicAuthorizationHeader: true,
+          popupOptions: { width: 580, height: 400 }
         },
         github: {
           name: 'github',
@@ -299,6 +302,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
         Shared.getToken = function() {
           return storage.get(tokenName);
         };
+
 
         Shared.getPayload = function() {
           var token = storage.get(tokenName);

@@ -33,7 +33,7 @@ mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
 });
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 3000);
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -64,36 +64,7 @@ app.use(function(req, res, next) {
 });
 
 
-// // initialize the Fitbit API client
-// var FitbitApiClient = require("fitbit-node"),
-//     client = new FitbitApiClient("22822W", "e46f74d5e23c9d8577fbf0a8bcb200f8");
-
-// // redirect the user to the Fitbit authorization page
-// app.get("/authorize", function (req, res) {
-//   console.log(res);
-//   console.log(req);
-//     // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
-//     res.redirect(client.getAuthorizeUrl('activity', 'http://df0e4131.ngrok.io/'));
-// });
-
-// // handle the callback from the Fitbit authorization flow
-// app.get("/callback", function (req, res) {
-//     // exchange the authorization code we just received for an access token
-//     client.getAccessToken(req.query.code, 'http://df0e4131.ngrok.io/').then(function (result) {
-//         // use the access token to fetch the user's profile information
-//         client.get("/profile.json", result.access_token).then(function (results) {
-//           console.log(results);
-//             res.send(results[0]);
-//         });
-//     }).catch(function (error) {
-//         res.send(error);
-//     });
-// });
-
-
-
-
-// find specific carrot
+// helps to find a specific carrot
 app.param('carrot', function(req, res, next, id) {
   var query = Carrot.findById(id);
 
@@ -106,7 +77,7 @@ app.param('carrot', function(req, res, next, id) {
   });
 });
 
-// find specific user
+// helps to find a specific user
 app.param('user', function(req, res, next, id) {
   var query = User.findById(id);
 
@@ -118,7 +89,28 @@ app.param('user', function(req, res, next, id) {
     return next();
   });
 });
+// var FitbitApiClient = require("fitbit-node"),
+//     client = new FitbitApiClient("22822W", "e46f74d5e23c9d8577fbf0a8bcb200f8");
 
+// // redirect the user to the Fitbit authorization page
+// app.get("/authorize", function (req, res) {
+//     // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
+//     res.redirect(client.getAuthorizeUrl('activity heartrate location nutrition profile settings sleep social weight', '/'));
+// });
+
+// // handle the callback from the Fitbit authorization flow
+// app.get("/callback", function (req, res) {
+//     // exchange the authorization code we just received for an access token
+//     client.getAccessToken(req.query.code, 'http://localhost:3000').then(function (result) {
+//         // use the access token to fetch the user's profile information
+//         client.get("/profile.json", result.access_token).then(function (results) {
+//           console.log(results)
+//             res.send(results[0]);
+//         });
+//     }).catch(function (error) {
+//         res.send(error);
+//     });
+// });
 
 app.post('/contact', contactRoute.contactPost);
 app.put('/account', userRoute.ensureAuthenticated, userRoute.accountPut);
@@ -130,6 +122,11 @@ app.post('/reset/:token', userRoute.resetPost);
 app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
 app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
+
+app.post('/auth/fitbit', userRoute.authFitbit);
+app.get('/auth/fitbit/callback', userRoute.authFitbitCallback);
+
+// app.post('/runkeepertoken', userRoute.newTokenForClient);
 
 
 app.get('/carrots', carrotRoute.getCarrots); // get all carrots

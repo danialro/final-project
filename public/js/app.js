@@ -63,8 +63,15 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
     $authProvider.signupUrl = '/signup';
     $authProvider.facebook({
       url: '/auth/facebook',
-      clientId: '980220002068787',
-      redirectUri: 'http://localhost:3000/auth/facebook/callback'
+      clientId: '336919469976326',
+      redirectUri: 'http://2c0d2f5e.ngrok.io/auth/facebook/callback'
+    });
+
+    $authProvider.authToken = '/carrots/:id';
+    $authProvider.fitbit({
+      url: '/auth/fitbit',
+      clientId: '227ZM6',
+      redirectUri: 'http://2c0d2f5e.ngrok.io/auth/fitbit/callback'
     });
 
     function skipIfAuthenticated($location, $auth) { // if user is logged in, will take him to the page
@@ -84,6 +91,9 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
     if ($window.localStorage.user) {
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
     }
+    // else if ($window.localStorage.satellizer_token) {
+    //   $rootScope.currentUserToken = $window.localStorage.satellizer_token;
+    // }
   });
 
 
