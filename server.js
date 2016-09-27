@@ -120,11 +120,23 @@ app.post('/login', userRoute.loginPost);
 app.post('/forgot', userRoute.forgotPost);
 app.post('/reset/:token', userRoute.resetPost);
 app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
+
 app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
-app.post('/auth/fitbit', userRoute.authFitbit);
-app.get('/auth/fitbit/callback', userRoute.authFitbitCallback);
+
+
+///////////////////////////////////////////
+
+// THIS IS THE FITBIT ROUTES TO GET AUTHERIZATION CODEAND ACCESS TKEN !!!!!!!!!!!
+app.get('/authorize', userRoute.authFitbit); // LOOK UNDER routes => user.js (bottom of the page)
+app.post('/token', userRoute.authFitbitCallback);
+
+// LOOK UNDER NODE MODULES => fitbit-node to see code example
+///////////////////////////////////////////
+
+
+
 
 // app.post('/runkeepertoken', userRoute.newTokenForClient);
 

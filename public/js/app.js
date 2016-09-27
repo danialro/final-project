@@ -67,12 +67,12 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
       redirectUri: 'http://2c0d2f5e.ngrok.io/auth/facebook/callback'
     });
 
-    $authProvider.authToken = '/carrots/:id';
-    $authProvider.fitbit({
-      url: '/auth/fitbit',
-      clientId: '227ZM6',
-      redirectUri: 'http://2c0d2f5e.ngrok.io/auth/fitbit/callback'
-    });
+    // $authProvider.loginUrl = '/carrots/:id';
+    // $authProvider.fitbit({
+    //   url: '/auth/fitbit',
+    //   clientId: '227ZM6',
+    //   redirectUri: '/auth/fitbit/callback'
+    // });
 
     function skipIfAuthenticated($location, $auth) { // if user is logged in, will take him to the page
       if ($auth.isAuthenticated()) {
