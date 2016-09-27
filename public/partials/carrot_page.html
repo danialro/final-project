@@ -36,8 +36,9 @@
             <p>Well, it's pretty simple. You pledge the entrance fees and commit to meet the weekly goal. If you do, you keep your money and get the money of the lazy members of this carrot who didn't meet their weekly goal.</p>
             <p>If you don't, you lose your money and get to keep your belly :)</p>
             <br>
-            <button class="btn btn-primary col-md-4 col-md-offset-4" ng-click="joinCarrot(carrot)">Join Carrot</button>
-            <button class="btn btn-danger col-md-4 col-md-offset-4" ng-click="connectFitbit()">Connect with RunKeeper</button>
+            <button class="btn btn-primary col-md-4 col-md-offset-4" ng-hide="userInCarrot(currentUser)" ng-click="joinCarrot(carrot)">Join Carrot</button>
+            <br>
+            <button class="btn btn-danger col-md-4 col-md-offset-4" ng-click="connectFitbit()">Connect with Fitbit</button>
           </div>
         </div>
 

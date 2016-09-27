@@ -50,10 +50,26 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
         templateUrl: 'partials/carrot_page.html',
         controller: 'CarrotPageCtrl',
         resolve: {
+
           carrot: ['carrotService', '$route', function(carrotService, $route){
             return carrotService.getOneCarrot($route.current.params.id);
+          }],
+
+          // currentUser: ['carrotService', '$route', function(carrotService, $route){
+          //   return carrotService.getOneUser($route.current.params.id);
+          // }],
+
+          carrotParticipants: ['carrotService', '$route', function(carrotService, $route){
+            return carrotService.getCarrotParticipants($route.current.params.id);
           }]
         }
+      })
+      .when('/getcode', {
+        template: '<div>YO YO THIS IS THE CODE HANDLER</div>',
+        controller:  ['$scope','$routeParams','carrotService', function($scope, $routeParams,carrotService) {
+          var param1 = $routeParams.code;
+          carrotService.convertCodeToRunkeeperToken(param1)
+        }]
       })
       .otherwise({
         templateUrl: 'partials/404.html'

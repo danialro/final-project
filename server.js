@@ -91,28 +91,7 @@ app.param('user', function(req, res, next, id) {
     return next();
   });
 });
-// var FitbitApiClient = require("fitbit-node"),
-//     client = new FitbitApiClient("22822W", "e46f74d5e23c9d8577fbf0a8bcb200f8");
 
-// // redirect the user to the Fitbit authorization page
-// app.get("/authorize", function (req, res) {
-//     // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
-//     res.redirect(client.getAuthorizeUrl('activity heartrate location nutrition profile settings sleep social weight', '/'));
-// });
-
-// // handle the callback from the Fitbit authorization flow
-// app.get("/callback", function (req, res) {
-//     // exchange the authorization code we just received for an access token
-//     client.getAccessToken(req.query.code, 'http://localhost:3000').then(function (result) {
-//         // use the access token to fetch the user's profile information
-//         client.get("/profile.json", result.access_token).then(function (results) {
-//           console.log(results)
-//             res.send(results[0]);
-//         });
-//     }).catch(function (error) {
-//         res.send(error);
-//     });
-// });
 
 app.post('/contact', contactRoute.contactPost);
 app.put('/account', userRoute.ensureAuthenticated, userRoute.accountPut);
@@ -128,25 +107,18 @@ app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
 
 
-///////////////////////////////////////////
-
-// THIS IS THE FITBIT ROUTES TO GET AUTHERIZATION CODEAND ACCESS TKEN !!!!!!!!!!!
-app.get('/authorize', userRoute.authFitbit); // LOOK UNDER routes => user.js (bottom of the page)
+app.get('/authorize', userRoute.authFitbit);
 app.get('/callback', userRoute.authFitbitCallback);
 
-// LOOK UNDER NODE MODULES => fitbit-node to see code example
-///////////////////////////////////////////
-
-
-
-// app.post('/runkeepertoken', userRoute.newTokenForClient);
+// app.post('/runkeepercodetotoken', userRoute.tryToGetNewToken); //get user token for runkeeper
 
 
 app.get('/carrots', carrotRoute.getCarrots); // get all carrots
 app.get('/carrots/:carrot', carrotRoute.getOneCarrot); // get one carrot
 app.post('/carrots', carrotRoute.postCarrot); // post new carrot
 app.put('/carrots/:carrot/join', carrotRoute.joinCarrot); // jion a specific carrot
-// app.get('/users/:user', userRoute.getOneUser); // get one user
+app.get('/users/:user', userRoute.getOneUser); // get one user
+app.get('/carrots/:carrot/participants', carrotRoute.getCarrotParticipants); // get carrot participants
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

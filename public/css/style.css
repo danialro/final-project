@@ -41,7 +41,6 @@ body {
   height: 75%;
   opacity: 0.7;
   z-index: 100;
-  /*text-shadow: 0 0 10px #000;*/
   color: #191b1d;
   font-size: 5vw;
   font-family: 'Raleway';
@@ -95,7 +94,7 @@ body {
   border-color: #333;
 }
 
-.home-button:hover {
+.btn-primary:hover {
     color: #fff;
     background-color: #eb7518;
     border-color: #333;

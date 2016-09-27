@@ -58,6 +58,11 @@ exports.getOneCarrot = function(req, res, next) {
   res.json(req.carrot);
 };
 
+//get one carrot participants
+exports.getCarrotParticipants = function(req, res, next) {
+  res.json(req.carrot.participants);
+};
+
 
 // GET all carrots
 exports.getCarrots = function(req, res, next) {

@@ -2,6 +2,7 @@ app.factory('carrotService', ['$http', function($http) {
 
   var carrotService = {
     carrots: [],
+    carrotsParticipants: [],
 
     // get all carrots for home page
     getAll: function() {
@@ -31,9 +32,23 @@ app.factory('carrotService', ['$http', function($http) {
     },
 
     connectFitbit: function() {
-      return $http.get('/authorize')
-        // return $http.get('/callback');
-      // });
+      return $http.get('/authorize');
+    },
+
+    getOneUser: function(user) {
+      return $http.get('/users/' + user).then(function(res){
+        return res.data;
+      });
+    },
+
+    getCarrotParticipants: function(carrot) {
+      return $http.get('/carrots/' + carrot + '/participants').then(function(res){
+        return carrotService.carrotsParticipants = res.data;
+      });
+    },
+
+    convertCodeToRunkeeperToken: function(code){
+      return $http.post('/runkeepercodetotoken/', JSON.stringify({myCode: code}))
     }
 
     // connectRunKeeper: function(){

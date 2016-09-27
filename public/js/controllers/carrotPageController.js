@@ -2,6 +2,9 @@ app.controller('CarrotPageCtrl', ['$scope', 'carrotService', '$location', 'carro
 
   $scope.carrot = carrot; // defining that carrot is a specific carrotId from the carrot in resolve (app.js)
   // $scope.authenticate = authenticate;
+  $scope.currentUser = $rootScope.currentUser;
+
+  // $scope.carrotParticipants = carrotParticipants;
 
 
   $scope.joinCarrot = function(carrot){
@@ -11,39 +14,37 @@ app.controller('CarrotPageCtrl', ['$scope', 'carrotService', '$location', 'carro
     })
   };
 
-
+// connect to Fitbit API
   $scope.connectFitbit = function() {
     carrotService.connectFitbit().then(function(result){
       // console.log("RESULT is", result.data.url)
       var wnd = window.open(result.data.url);
         setTimeout(function() {
           wnd.close();
-        }, 30000);
+        }, 10000);
         return false;
     })
   };
 
+  $scope.userInCarrot = function(currentUser) {
+console.log("user is in the carrot and that's why the join button doesn't show!")
+    if (carrotService.carrotsParticipants.indexOf(String(currentUser._id)) >= 0){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
-  // $scope.authenticate = function(provider) {
-  //   $auth.authenticate(provider)
-  //     .then(function(response) {
-  //       console.log(response);
-  //       $rootScope.currentUserToken = response.data.satellizer_token;
-  //       $window.localStorage.satellizer_token = response.data.satellizer_token;
-  //       $location.path('/');
-  //     })
-  //     .catch(function(response) {
-  //       if (response.error) {
-  //         $scope.messages = {
-  //           error: [{ msg: response.error }]
-  //         };
-  //       } else if (response.data) {
-  //         $scope.messages = {
-  //           error: [response.data]
-  //         };
-  //       }
-  //     });
-  // }
+// connect to Runkeeper API
+  // $scope.connectRunkeeper = function(){
+
+  //     var wnd = window.open("https://runkeeper.com/apps/authorize?client_id=499eec7e74084561ac8cd8018fd090f2&redirect_uri=http://localhost:3000/getcode/&response_type=code");
+  //       setTimeout(function() {
+  //         wnd.close();
+  //       }, 5000);
+  //       return false;
+  // };
 
 
 }]);
