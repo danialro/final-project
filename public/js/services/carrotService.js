@@ -28,6 +28,12 @@ app.factory('carrotService', ['$http', function($http) {
       return $http.put('/carrots/' + carrot._id + '/join').success(function(data){
         return data;
       });
+    },
+
+    connectFitbit: function() {
+      return $http.get('/authorize')
+        // return $http.get('/callback');
+      // });
     }
 
     // connectRunKeeper: function(){

@@ -370,23 +370,27 @@ exports.authFacebookCallback = function(req, res) {
 //////////////////////////////////////////////////
 
 // METHOD FROM GITHUB USING FITBIT-NODE
-var FitbitApiClient = require("fitbit-node"),
+var FitbitApiClient = require("fitbit-node");
 
-  client = new FitbitApiClient("227ZM6", "9e6178f136cf1dc138a33bbf8122657b");
+var client = new FitbitApiClient("227ZM6", "9e6178f136cf1dc138a33bbf8122657b");
 
 exports.authFitbit =  function (req, res) {
+  console.log("in the authFitbit route, this is req user", req.user);
     // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
-    res.redirect(client.getAuthorizeUrl('activity profile', 'http://2c0d2f5e.ngrok.io/'));
+    console.log(client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback'))
+    //res.redirect(client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback'));
+    res.send({url:client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback')})
 };
 
 exports.authFitbitCallback =  function (req, res) {
+console.log("HOWYYYYY")
     // exchange the authorization code we just received for an access token
-    client.getAccessToken(req.query.code, 'http://2c0d2f5e.ngrok.io/').then(function (result) {
+    client.getAccessToken(req.query.code, 'https://2c0d2f5e.ngrok.io/callback').then(function (result) {
         // use the access token to fetch the user's profile information
-        client.get("/profile.json", result.access_token).then(function (results) {
-          console.log(result.access_token);
-          console.log(results[0]);
-            res.send(results[0]);
+        client.get("/activities.json", result.access_token).then(function (results) {
+          console.log("this is the result", result);
+          console.log("this is results[0]", results[0]);
+            res.json(results[0]);
         });
     }).catch(function (error) {
         res.send(error);
@@ -396,58 +400,6 @@ exports.authFitbitCallback =  function (req, res) {
 
 /////////////////////////////////////////////////
 
-
-
-// METHOD USING THIS BOILERPLATE
-// exports.authFitbit = function(req, res) {
-
-//   var accessTokenUrl = 'https://api.fitbit.com/oauth2/authorize';
-//   // var tokenApiUrl = 'https://api.fitbit.com/oauth2/token';
-
-//   console.log("in the authFitbit server side");
-
-//   var params = {
-//     code: req.body.code,
-//     client_id: req.body.clientId,
-//     client_secret: process.env.FITBIT_SECRET,
-//     redirect_uri: req.body.redirectUri
-//   };
-
-//   // Step 1. Exchange authorization code for access token.
-//   request.post({ url: accessTokenUrl, qs: params, json: true }, function(err, response, accessToken) {
-//     if (accessToken.error) {
-//       return res.status(500).send({ msg: accessToken.error.message });
-//     }
-
-
-    // Step 2. Retrieve user's profile information.
-    // request.get({ url: tokenApiUrl, qs: accessToken, json: true }, function(err, response, profile) {
-    //   if (profile.error) {
-    //     return res.status(500).send({ msg: profile.error.message });
-    //   }
-
-    // Step 3a. Link accounts if user is authenticated.
-      // if (req.isAuthenticated()) {
-      //   User.findOne({ runkeeper: runkeeper.id }, function(err, user) {
-      //     if (user) {
-      //       return res.status(409).send({ msg: 'There is already an existing account linked with Facebook that belongs to you.' });
-      //     }
-      //     user = req.user;
-      //     user.name = user.name || profile.name;
-      //     user.runkeeper = profile.id;
-      //     user.save(function() {
-      //       res.send({ token: generateToken(user), user: user });
-      //     });
-      //   });
-      // }
-
-    // });
-//   });
-// };
-
-// exports.authFitbitCallback = function(req, res) {
-//   res.send('Loading...');
-// };
 
 
 

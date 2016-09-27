@@ -42,6 +42,8 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use(function(req, res, next) {
   req.isAuthenticated = function() {
     var token = (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token;
@@ -130,11 +132,10 @@ app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
 // THIS IS THE FITBIT ROUTES TO GET AUTHERIZATION CODEAND ACCESS TKEN !!!!!!!!!!!
 app.get('/authorize', userRoute.authFitbit); // LOOK UNDER routes => user.js (bottom of the page)
-app.post('/token', userRoute.authFitbitCallback);
+app.get('/callback', userRoute.authFitbitCallback);
 
 // LOOK UNDER NODE MODULES => fitbit-node to see code example
 ///////////////////////////////////////////
-
 
 
 
