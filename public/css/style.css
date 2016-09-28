@@ -53,13 +53,15 @@ body {
 .card {
   overflow: hidden;
   position: relative;
-  border: 5px double #333;
-  /*border-radius: 8px;*/
+  border: 3px solid #27ae60;
+  border-radius: 5px;
   text-align: center;
-  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 0 30px 0;
   background-color: #ecf0f1;
   color: #333;
-  font-family: "Josefin Sans";
+  font-family: "Exo";
 }
 
 .card .header-bg {
@@ -90,7 +92,7 @@ body {
 
 .btn-primary {
   color: #fff;
-  background-color: #d35400;
+  background-color: #F9690E;
   border-color: #333;
 }
 
@@ -100,12 +102,18 @@ body {
     border-color: #333;
 }
 
+.carrot-info {
+  width:45%;
+  border:none;
+}
+
 .coupon {
     /*border: 3px dashed #bcbcbc;*/
     border-radius: 10px;
     font-family: "Raleway", "HelveticaNeue-Light", "Helvetica Neue Light", 
     "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
+    margin-top: 20px;
 }
 
 .coupon #head {
@@ -205,5 +213,11 @@ sup {
 .print {
     font-size: 14px;
     float: right;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+   border-color: #27ae60;
+   box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+   outline: 0 none;
 }
 

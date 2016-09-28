@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CRaleway:100,300,600,700,800%7CJosefin+Sans%7CJosefin+Slab:100,300,600,700,800");
+@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CRaleway:100,300,500,600,700,800%7CJosefin+Sans%7CJosefin+Slab:100,300,600,700,800,1000%7CLato%7CExo%7CRighteous%7CFredoka+One%7CGlegoo:700%7CPassion+One");
 
 /* Scaffolding
 /* ------------------------- */
@@ -33,8 +33,8 @@ footer {
   height: 44px;
   padding: 10px 30px;
   bottom: 0;
-  background-color: #fff;
-  border-top: 1px solid #e0e0e0;
+  background-color: #333;
+  border-top: 1px solid #e67e22;
 }
 
 .login-container {
