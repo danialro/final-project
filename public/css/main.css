@@ -117,7 +117,7 @@ footer {
 }
 
 .panel-heading {
-  padding: 20px 30px;
+  /*padding: 20px 30px;*/
 }
 
 .panel-heading + .panel-body {

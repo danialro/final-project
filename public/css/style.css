@@ -107,19 +107,25 @@ body {
   border:none;
 }
 
+.cloudinary-button {
+  border-color: #208a46;
+  background: #29b35b linear-gradient(to bottom, #2ec866, #29b35b);
+}
+
 .coupon {
     /*border: 3px dashed #bcbcbc;*/
     border-radius: 10px;
-    font-family: "Raleway", "HelveticaNeue-Light", "Helvetica Neue Light", 
+    font-family: "Exo", "HelveticaNeue-Light", "Helvetica Neue Light", 
     "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
     margin-top: 20px;
+    border:2px solid;
 }
 
 .coupon #head {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    min-height: 56px;
+    line-height: 30px;
 }
 
 .coupon #footer {
@@ -220,4 +226,51 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
    outline: 0 none;
 }
+
+.carrot-page {
+  padding: 0 !important;
+}
+
+
+.data-row {
+  width: 80%;
+}
+
+.icon-carrot {
+  display: inline-block;
+  width: 10%;
+  font-size: 30px;
+  /* font-weight: bold; */
+  color: grey;
+  text-align: center;
+  margin-right: 10px;
+}
+
+
+.participants-key {
+  display: inline-block;
+  width: 51%;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+
+.participants-value {
+  display: inline-block;
+  width: 20%;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.carrot-desc {
+  margin-left: 14%;
+}
+
+
+
+
+
+
+
+
 

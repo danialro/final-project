@@ -24,7 +24,6 @@ app.controller('CarrotPageCtrl', ['$scope', 'carrotService', '$location', 'carro
   };
 
 
-
   $scope.userInCarrot = function(currentUser) {
 // console.log("user is in the carrot and that's why the join button doesn't show!")
   if (currentUser === undefined) {
@@ -39,6 +38,17 @@ app.controller('CarrotPageCtrl', ['$scope', 'carrotService', '$location', 'carro
       }
     };
   }
+
+
+  $scope.userHasToken = function(currentUser){
+
+    if (carrotService.userToken.indexOf(String(currentUser._id)) >= 0){
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
 
   
 // connect to Fitbit API

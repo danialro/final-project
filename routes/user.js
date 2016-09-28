@@ -357,9 +357,13 @@ exports.authFacebook = function(req, res) {
 
 // get one user
 exports.getOneUser = function(req, res, next) {
-    // console.log("get one user in server", user)
     res.json(req.user);
   };
+
+// get user token
+exports.getUserToken = function(req, res, next){
+  res.json(req.user.runkeeperToken)
+};
 
 
 exports.authFacebookCallback = function(req, res) {

@@ -3,6 +3,7 @@ app.factory('carrotService', ['$http', function($http) {
   var carrotService = {
     carrots: [],
     carrotsParticipants: [],
+    userToken: [],
 
     // get all carrots for home page
     getAll: function() {
@@ -34,6 +35,12 @@ app.factory('carrotService', ['$http', function($http) {
     getOneUser: function(user) {
       return $http.get('/users/' + user).then(function(res){
         return res.data;
+      });
+    },
+
+    getUserToken: function(user) {
+      return $http.get('/users/' + user + '/token').then(function(res){
+        return carrotService.userToken = res.data;
       });
     },
 

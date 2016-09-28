@@ -55,6 +55,10 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
             return carrotService.getOneCarrot($route.current.params.id);
           }],
 
+          userToken: ['carrotService', '$rootScope', function(carrotService, $rootScope){
+            return carrotService.getUserToken($rootScope.currentUser._id);
+          }],
+
           carrotParticipants: ['carrotService', '$route', function(carrotService, $route){
             return carrotService.getCarrotParticipants($route.current.params.id);
           }]
