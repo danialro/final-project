@@ -31,10 +31,6 @@ app.factory('carrotService', ['$http', function($http) {
       });
     },
 
-    connectFitbit: function() {
-      return $http.get('/authorize');
-    },
-
     getOneUser: function(user) {
       return $http.get('/users/' + user).then(function(res){
         return res.data;
@@ -50,11 +46,11 @@ app.factory('carrotService', ['$http', function($http) {
     convertCodeToRunkeeperToken: function(code){
       return $http.post('/runkeepercodetotoken/', JSON.stringify({myCode: code}))
     }
+    
+    // connectFitbit: function() {
+    //   return $http.get('/authorize');
+    // },
 
-    // connectRunKeeper: function(){
-    //   return $http.get()
-    // }
-  
 }
 
   return carrotService;

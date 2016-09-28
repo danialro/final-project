@@ -55,10 +55,6 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
             return carrotService.getOneCarrot($route.current.params.id);
           }],
 
-          // currentUser: ['carrotService', '$route', function(carrotService, $route){
-          //   return carrotService.getOneUser($route.current.params.id);
-          // }],
-
           carrotParticipants: ['carrotService', '$route', function(carrotService, $route){
             return carrotService.getCarrotParticipants($route.current.params.id);
           }]
@@ -68,7 +64,7 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
         template: '<div>YO YO THIS IS THE CODE HANDLER</div>',
         controller:  ['$scope','$routeParams','carrotService', function($scope, $routeParams,carrotService) {
           var param1 = $routeParams.code;
-          carrotService.convertCodeToRunkeeperToken(param1)
+          carrotService.convertCodeToRunkeeperToken(param1);
         }]
       })
       .otherwise({
@@ -80,15 +76,9 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
     $authProvider.facebook({
       url: '/auth/facebook',
       clientId: '336919469976326',
-      redirectUri: 'http://2c0d2f5e.ngrok.io/auth/facebook/callback'
+      redirectUri: 'http://localhost:3000/auth/facebook/callback'
     });
 
-    // $authProvider.loginUrl = '/carrots/:id';
-    // $authProvider.fitbit({
-    //   url: '/auth/fitbit',
-    //   clientId: '227ZM6',
-    //   redirectUri: '/auth/fitbit/callback'
-    // });
 
     function skipIfAuthenticated($location, $auth) { // if user is logged in, will take him to the page
       if ($auth.isAuthenticated()) {
@@ -101,15 +91,14 @@ var app = angular.module('MyApp', ['ngRoute', 'satellizer']);
         $location.path('/signup');
       }
     }
+    
   })
 
   app.run(function($rootScope, $window) {
     if ($window.localStorage.user) {
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
     }
-    // else if ($window.localStorage.satellizer_token) {
-    //   $rootScope.currentUserToken = $window.localStorage.satellizer_token;
-    // }
+
   });
 
 

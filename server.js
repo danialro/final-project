@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var request = require('request');
-// var router = express.Router();
+var runkeeper = require('runkeeper-js');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -105,12 +105,10 @@ app.get('/unlink/:provider', userRoute.ensureAuthenticated, userRoute.unlink);
 app.post('/auth/facebook', userRoute.authFacebook);
 app.get('/auth/facebook/callback', userRoute.authFacebookCallback);
 
+// app.get('/authorize', userRoute.authFitbit);
+// app.get('/callback', userRoute.authFitbitCallback);
 
-
-app.get('/authorize', userRoute.authFitbit);
-app.get('/callback', userRoute.authFitbitCallback);
-
-// app.post('/runkeepercodetotoken', userRoute.tryToGetNewToken); //get user token for runkeeper
+app.post('/runkeepercodetotoken', userRoute.tryToGetNewToken); //get user token for runkeeper
 
 
 app.get('/carrots', carrotRoute.getCarrots); // get all carrots

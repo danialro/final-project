@@ -6,7 +6,8 @@ var moment = require('moment');
 var request = require('request');
 var qs = require('querystring');
 var User = require('../models/User');
-// Require RunKeeper.js
+// var Fitbit = require('../models/Fitbit');
+
 var runkeeper = require('runkeeper-js');
 
 function generateToken(user) {
@@ -366,119 +367,129 @@ exports.authFacebookCallback = function(req, res) {
 };
 
 
+/////////////////////////////////////////////////
+
+//connect to runkeeper
+exports.tryToGetNewToken = function (req, res) { //get auth_code to Runkeeper api
+ // console.log("im in the url", req.body.myCode)
+var authorization_code = req.body.myCode;
+tryToGetNewToken(authorization_code);
+}
+//StickyCarrot cridentials
+var options = exports.options = {
+
+   client_id : "499eec7e74084561ac8cd8018fd090f2",
+   client_secret : "12d7ab34af1a4a0b92d9868016593047",
+   auth_url : "https://runkeeper.com/apps/authorize",
+   access_token_url : "https://runkeeper.com/apps/token",
+   redirect_uri : "http://localhost:3000/getcode/",
+   access_token : "access token",
+   api_domain : "api.runkeeper.com"
+};
+
+
+// Create a Client
+var client = new runkeeper.HealthGraph(options);
+
+
+//call runkeeper to get authorization code
+exports.tryToGetNewToken = function (req, res) { //get auth_code
+
+var authorization_code = req.body.myCode;
+var user = req.user;
+
+tryToGetNewToken(authorization_code, user);
+};
+
+
+//replace authorization_code with token
+function tryToGetNewToken(authorization_code, user){
+
+ // Get a new Access Token with your Client
+ client.getNewToken(authorization_code, function(err, access_token) {
+
+     // If an error occurred during the Access Token request, handle it. For the example, we'll just output it and return false.
+     if(err) { console.log("ERROR", err); return false; }
+
+     // Set the client's Access Token. Any future API Calls will be performed using the authorized user's access token.
+
+     client.access_token = access_token;
+
+     // Usually, you'll want to store the access_token for later use so that you can set it upon initialization of the Client
+     user.runkeeperToken = client.access_token;
+     console.log("THIS IS USER", user);
+     console.log("THIS IS TOKEN", user.runkeeperToken);
+     user.save(function(err, user) {
+       if(err){ return next(err); }
+      })
+
+     console.log("LLLLLLLLLLL 2", user.runkeeperToken);
+
+     // Example: Get user's Profile information
+     client.fitnessActivities(function(err, reply) {
+       if(err) { console.log('error in exmple server.js!!!!',err); }
+
+       // Do whatever you need with the API's reply.
+       console.log("this is the reply", reply);
+     });
+ })
+}
+
 
 //////////////////////////////////////////////////
 
 // METHOD FROM GITHUB USING FITBIT-NODE
-var FitbitApiClient = require("fitbit-node");
+// var FitbitApiClient = require("fitbit-node");
 
-var client = new FitbitApiClient("227ZM6", "9e6178f136cf1dc138a33bbf8122657b");
+// var client = new FitbitApiClient("227ZM6", "9e6178f136cf1dc138a33bbf8122657b");
 
-exports.authFitbit =  function (req, res) {
-  console.log("in the authFitbit route, this is req user", req.user);
-    // request access to the user's activity, heartrate, location, nutrion, profile scopes
+// exports.authFitbit =  function (req, res) {
+//   // console.log("in the authFitbit route, this is req user", req.user);
+//     // request access to the user's activity, heartrate, location, nutrion, profile scopes
+//     var user = req.user;
+//     res.send({url:client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback', user)})
 
-    res.send({url:client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback')})
+//     // var url = client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback')
+//     //       request({
+//     //           uri: "https://api.fitbit.com/1/user/[user-id]/profile.json",
+//     //           method: 'GET',
 
-    // var url = client.getAuthorizeUrl('activity profile', 'https://2c0d2f5e.ngrok.io/callback')
+//     //         }, function (error, response, body) {
+//     //           console.log('from server authFitbit', JSON.parse(body))
+//     //         });
 
-
-
-};
-
-exports.authFitbitCallback =  function (req, res) {
-    // exchange the authorization code we just received for an access token
-    client.getAccessToken(req.query.code, 'https://2c0d2f5e.ngrok.io/callback').then(function (result) {
-        // use the access token to fetch the user's profile information
-        client.get("/profile.json", result.access_token).then(function (results) {
-          console.log("this is the result", result);
-          console.log("this is results[0]", results[0]);
-            res.send(results[0]);
-
-            request({
-              uri: "https://api.fitbit.com/1/user/[user-id]/profile.json",
-              method: 'GET',
-
-            }, function (error, response, body) {
-              console.log('from server authFitbit', JSON.parse(body))
-            });
-        });
-    }).catch(function (error) {
-        res.send(error);
-    });
-};
-
-
-/////////////////////////////////////////////////
-
-//connect to runkeeper
-// exports.tryToGetNewToken = function (req, res) { //get auth_code to Runkeeper api
-//  // console.log("im in the url", req.body.myCode)
-// var authorization_code = req.body.myCode;
-// tryToGetNewToken(authorization_code);
-// }
-// //StickyCarrot cridentials
-// var options = exports.options = {
-
-//    // Client ID (Required):
-//    // This value is the OAuth 2.0 client ID for your application.
-//    client_id : "499eec7e74084561ac8cd8018fd090f2",
-
-//    // Client Secret (Required):
-//    // This value is the OAuth 2.0 shared secret for your application.
-//    client_secret : "12d7ab34af1a4a0b92d9868016593047",
-
-//    // Authorization URL (Optional, default will work for most apps):
-//    // This is the URL to which your application should redirect the user in order to authorize access to his or her RunKeeper account.
-//    auth_url : "https://runkeeper.com/apps/authorize",
-
-//    // Access Token URL (Optional, default will work for most apps):
-//    // This is the URL at which your application can convert an authorization code to an access token.
-//    access_token_url : "https://runkeeper.com/apps/token",
-
-//    // Redirect URI (Optional but defaults to null, which means your app won't be able to use the getNewToken method):
-//    // This is the URL that RK sends user to after successful auth
-//    // URI naming based on Runkeeper convention
-//    redirect_uri : "http://localhost:3000/getcode/",
-
-//    // Access Token (Optional, defaults to null):
-//    // When doing Client API Calls on behalf of a specific user (and not getting a new Access Token for the first time), set the user's Access Token here.
-//    access_token : "access token",
-
-//    // API Domain (Optional, default will work for most apps):
-//    // This is the FQDN (Fully qualified domain name) that is used in making API calls
-//    api_domain : "api.runkeeper.com"
 // };
 
-// // Require RunKeeper.js
-// var runkeeper = require('runkeeper-js');
+// exports.authFitbitCallback =  function (req, res) {
+//     // exchange the authorization code we just received for an access token
+//     console.log("in the callback route, this is req user", user);
+//     client.getAccessToken(req.query.code, 'https://2c0d2f5e.ngrok.io/callback').then(function (result) {
+//         // use the access token to fetch the user's profile information
+//         client.get("/profile.json", result.access_token).then(function (results) {
+//           // console.log("this is the result", result);
 
-// // Create a Client
-// var client = new runkeeper.HealthGraph(options);
+//           // result = new Fitbit({
+//           //   access_token: result.access_token,
+//           //   expires_in: result.expires_in,
+//           //   refresh_token: result.refresh_token,
+//           //   scope: result.scope,
+//           //   token_type: result.token_type,
+//           //   user_id: result.user_id,
+//           //   user_info: results[0],
+//           //   stickyCarrotUser_id: req.user
+//           // });
+//           // result.save();
 
-// //replace authorization_code with token
-// function tryToGetNewToken(authorization_code){
-//  console.log("im in the try to get new token")
-//  // Get a new Access Token with your Client
-//  client.getNewToken(authorization_code, function(err, access_token) {
-// console.log("im inside 2 the try to get new token", client)
-//      // If an error occurred during the Access Token request, handle it. For the example, we'll just output it and return false.
-//      if(err) { console.log(err); return false; }
+//             res.send(results[0]);
 
-//      // Set the client's Access Token. Any future API Calls will be performed using the authorized user's access token.
-//      console.log('the access token is: ', access_token);
-//      client.access_token = access_token;
+//         });
+//     }).catch(function (error) {
+//         res.send(error);
+//     });
+// };
 
-//      // Usually, you'll want to store the access_token for later use so that you can set it upon initialization of the Client
 
-//      // Example: Get user's Profile information
-//      client.fitnessActivities(function(err, reply) {
-//        if(err) { console.log('error in exmple server.js!!!!',err); }
 
-//        // Do whatever you need with the API's reply.
-//        console.log(reply);
-//      });
-//  })
-// }
+
 
 
