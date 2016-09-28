@@ -19,6 +19,7 @@ var CarrotSchema = new mongoose.Schema({
   numParticipants: {type: Number, default: 0},
   type: {type: String, default: "Running"},
   active: Boolean,
+  image_upload: String,
   moneyPledged: {type: Number, default: 0},
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
