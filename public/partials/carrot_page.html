@@ -4,7 +4,7 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-success coupon">
 
-        <div class="panel-heading" style="background-color:white;border-color:black;" id="head">
+        <div class="panel-heading background-carrot" style="border-color:black;" id="head">
           <div class="panel-title" id="title">
             <!-- <img src="/media/carrot.png" style="font-size:50px;width:50px;border:none;height:60px;float:left;margin-left:-20px;padding-bottom:10px;" /> -->
             <h3 style="text-align:center;text-transform:uppercase;font-family:Glegoo;">{{carrot.carrotName}}</h3>
@@ -12,7 +12,7 @@
           </div>
         </div>
 
-        <div class="panel-body carrot-page">
+        <div class="panel-body carrot-page background-carrot">
           <img src="{{carrot.image_upload}}" style="width:100%;height:400px;object-fit:cover;" class="coupon-img"/>
 
           <div class="" style="padding:6%">
@@ -20,9 +20,9 @@
             <div class="items">
 
               <div class="data-row">
-                <div class="icon-carrot"><i class="fa fa-flag-checkered" aria-hidden="true"></i></div>
-                <div class="participants-key" style="font-weight:bold;font-size:">Weekly Goal: </div>
-                <div class="participants-value">{{carrot.weeklyGoal}}km</div>
+                <div class="icon-carrot"><i class="fa fa-flag-checkered" style="font-size:larger" aria-hidden="true"></i></div>
+                <div class="participants-key" style="font-size:xx-large">Weekly Goal: </div>
+                <div class="participants-value" style="font-size:xx-large">{{carrot.weeklyGoal}}km</div>
               </div>
               <br>
               
@@ -48,7 +48,7 @@
           </div>
           <div class="col-md-3">
             <div class="offer text-success">
-              <h5>Money Pledged:</h5>
+              <h5 style="padding-top:20px;font-weight:800;font-size: x-large;">Money Pledged:</h5>
               <span class="usd"><sup>$</sup></span>
               <span class="number">{{carrot.moneyPledged}}</span>
             </div>
@@ -61,7 +61,7 @@
             <br>
             <button class="btn btn-primary col-md-4 col-md-offset-4" ng-hide="userInCarrot(currentUser)" ng-click="joinCarrot(carrot)">Join Carrot</button>
             <br>
-            <button class="btn btn-danger col-md-4 col-md-offset-4" style="margin-bottom:20px;" ng-click="connectRunkeeper()" ng-hide="userHasToken(currentUser)">Connect with Runkeeper</button>
+            <button class="btn btn-danger col-md-4 col-md-offset-4" style="margin-bottom:20px;" ng-click="connectRunkeeper()">Connect with Runkeeper</button>
           </div>
         </div>
         </div>

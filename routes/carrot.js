@@ -11,7 +11,7 @@ var Carrot = require('../models/Carrot');
 exports.postCarrot = function(req, res, next) {
 
   var carrot = new Carrot(req.body);
-
+console.log("this is req user of create carrot", req.user);
   carrot.owner = req.user; // defining an owner of the carrot
   carrot.participants.push(req.user);
   carrot.participantsCounter(); // adding += 1 to number of participants
@@ -35,7 +35,8 @@ exports.postCarrot = function(req, res, next) {
 exports.joinCarrot = function(req, res, next) {
   
   req.carrot.participants.push(req.user); // pushing a user to the carrots participants array
-
+console.log("hey from server", req.user)
+console.log("hey from carrot", req.carrot)
   req.carrot.participantsCounter(); // adding += 1 to number of participants
   req.carrot.moneyPledgedCounter(); // adding the entrance fee to the total money pledged
 

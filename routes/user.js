@@ -356,14 +356,14 @@ exports.authFacebook = function(req, res) {
 
 
 // get one user
-exports.getOneUser = function(req, res, next) {
-    res.json(req.user);
-  };
+// exports.getOneUser = function(req, res, next) {
+//     res.json(req.user);
+//   };
 
-// get user token
-exports.getUserToken = function(req, res, next){
-  res.json(req.user.runkeeperToken)
-};
+// // get user token
+// exports.getUserToken = function(req, res, next){
+//   res.json(req.user.runkeeperToken)
+// };
 
 
 exports.authFacebookCallback = function(req, res) {

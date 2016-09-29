@@ -115,9 +115,9 @@ app.get('/carrots', carrotRoute.getCarrots); // get all carrots
 app.get('/carrots/:carrot', carrotRoute.getOneCarrot); // get one carrot
 app.post('/carrots', carrotRoute.postCarrot); // post new carrot
 app.put('/carrots/:carrot/join', carrotRoute.joinCarrot); // jion a specific carrot
-app.get('/users/:user', userRoute.getOneUser); // get one user
-app.get('/users/:user/token', userRoute.getUserToken); // get user token
 app.get('/carrots/:carrot/participants', carrotRoute.getCarrotParticipants); // get carrot participants
+// app.get('/users/:user', userRoute.getOneUser); // get one user
+// app.get('/users/:user/token', userRoute.getUserToken); // get user token
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

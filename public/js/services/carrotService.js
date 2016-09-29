@@ -3,7 +3,6 @@ app.factory('carrotService', ['$http', function($http) {
   var carrotService = {
     carrots: [],
     carrotsParticipants: [],
-    userToken: [],
 
     // get all carrots for home page
     getAll: function() {
@@ -15,7 +14,7 @@ app.factory('carrotService', ['$http', function($http) {
 
     // posting a new carrot
     postCarrot: function(data) {
-      return $http.post('/carrots/', data);
+      return $http.post('/carrots', data);
     },
 
     // get into one carrot page
@@ -28,7 +27,7 @@ app.factory('carrotService', ['$http', function($http) {
     // joining a carrot
     joinCarrot: function(carrot) {
       return $http.put('/carrots/' + carrot._id + '/join').success(function(data){
-        return data;
+        // return data;
       });
     },
 
@@ -54,9 +53,6 @@ app.factory('carrotService', ['$http', function($http) {
       return $http.post('/runkeepercodetotoken/', JSON.stringify({myCode: code}))
     }
     
-    // connectFitbit: function() {
-    //   return $http.get('/authorize');
-    // },
 
 }
 

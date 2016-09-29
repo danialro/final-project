@@ -17,11 +17,16 @@ var userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   gender: String,
   location: String,
+  website: String,
   picture: String,
   facebook: String,
-  runkeeperToken: { type: String, unique: true},
+  runkeeperToken: String,
   createdCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}],
-  joinedCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}]
+  joinedCarrots: [{type: mongoose.Schema.Types.ObjectId, ref: 'Carrot'}],
+  twitter: String,
+  google: String,
+  github: String,
+  vk: String
 
 }, schemaOptions);
 
